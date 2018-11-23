@@ -19,15 +19,66 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.d(TAG, "onCreate");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         mPesan = findViewById(R.id.ed_pesan);
         mBalas = findViewById(R.id.text_balas);
+
+        if (savedInstanceState != null) {
+            String pesanBalasan = savedInstanceState.getString("text_reply");
+            mBalas.setText(pesanBalasan);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        Log.d(TAG, "onStart");
+        super.onStart();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.d(TAG, "onPause");
+        super.onPause();
+    }
+
+    @Override
+    protected void onRestart() {
+        Log.d(TAG, "onRestart");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.d(TAG, "onResume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onStop() {
+        Log.d(TAG, "onStop");
+        super.onStop();
+    }
+
+    @Override
+    protected void onDestroy() {
+        Log.d(TAG, "onDestroy");
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.d(TAG, "Open Another Activity");
+        super.onSaveInstanceState(outState);
+
+        outState.putString("text_reply", mBalas.getText().toString());
     }
 
     public void openAnotherActivity(View view) {
-        Log.d(TAG, "Button Clicked");
+        Log.d(TAG, "Open Another Activity");
 
         String message = mPesan.getText().toString();
 
@@ -38,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        Log.d(TAG, "onActivityResult");
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == TEXT_REQUEST) {
